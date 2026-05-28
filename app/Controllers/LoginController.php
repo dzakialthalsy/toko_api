@@ -31,14 +31,20 @@ class LoginController extends RestfulController
             'token' => $auth_key,
             'user' => [ 
                 'id' => $member['id'],
-                'email' => $member['email']
+                'email' => $member['email'],
+                'nama' => $member['nama'],
+                'no_hp' => $member['no_hp'],
+                'alamat' => $member['alamat'],
+                'tanggal_lahir' => $member['tanggal_lahir'],
+                'foto' => $member['foto'],
+                'role' => $member['role'] ?? 'pembeli'
             ]
         ];
         return $this->responseHasil(200, true, $data);
     }
 
     private function RandomString($length = 100) 
-    { 
+    {
         $karakkter = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $panjang_karakter = strlen($karakkter);
         $str = '';

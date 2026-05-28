@@ -11,10 +11,15 @@ class RestfulController extends ResourceController
 
     protected function responseHasil($code, $status, $data)
     { 
-        return $this->respond([ 
-            'code' => $code,
-            'status' => $status,
-            'data' => $data
-        ]);
+        // Tambahkan header Access-Control agar API bisa diakses oleh Flutter
+        return $this->response->setStatusCode($code)
+                              ->setHeader('Access-Control-Allow-Origin', '*')
+                              ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+                              ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+                              ->setJSON([ 
+                                  'code' => $code,
+                                  'status' => $status,
+                                  'data' => $data
+                              ]);
     }
 }

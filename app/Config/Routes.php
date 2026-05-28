@@ -14,9 +14,11 @@ $routes->options('login', static fn () => service('response')->setStatusCode(200
 $routes->group('produk', function($routes) {
     $routes->post('/', 'ProdukController::create');
     $routes->get('/', 'ProdukController::list');
+    $routes->post('(:segment)/beli', 'ProdukController::beli/$1');
     $routes->get('(:segment)', 'ProdukController::detail/$1');
     $routes->put('(:segment)', 'ProdukController::ubah/$1');
     $routes->delete('(:segment)', 'ProdukController::hapus/$1');
     $routes->options('/', static fn () => service('response')->setStatusCode(200));
+    $routes->options('(:segment)/beli', static fn () => service('response')->setStatusCode(200));
     $routes->options('(:segment)', static fn () => service('response')->setStatusCode(200));
 });
